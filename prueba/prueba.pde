@@ -97,7 +97,7 @@ void keyPressed( ){
         carga[pos]=1;
       }else{carga[pos]=0;}
     }
-    if(pos>=0 && pos<ciudades.length && pos >= 0 &&(key=='w'||key=='W')){
+    if(pos>0 && pos<ciudades.length && pos >= 0 &&(key=='w'||key=='W')){
         pos--;
     }else if(pos>=0 && pos<ciudades.length && pos<=18 && (key=='s'||key=='S')){
         pos++;
