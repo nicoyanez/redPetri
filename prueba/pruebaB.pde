@@ -1,13 +1,10 @@
-PImage leon;
-PImage mujer;
-PImage rugido;
 PImage mapa;
 Boolean cargado; 
 
 int R[]={53,45,57,91,55,196,66,237,124,67,164,95,28,2,23,128,154,45,77,223};
 int G[]={122,36,251,68,105,105,15,225,202,174,36,138,251,119,140,187,199,163,59,182};
 int B[]={149,95,46,175,81,194,184,121,4,225,26,241,25,125,222,180,124,171,89,216};
-int Y[]={135, 133, 140, 147, 153, 163, 97, 105, 125, 149, 162, 170, 190, 208, 220, 225, 230, 240, 253, 261};
+int Y[]={27,97,190,187,170,96,48,236,149,173,40,233,162,171,28,251,105,125,16,183};
 String ciudades[]={"Valparaiso","Juan Fernandez","algarrobo","San Antonio","Pichilemu","Talcahuano","San Vicente","Coronel","Lota","Lebu","Constitucion","Lirquen","Carahue","Villarrica","Panguipulli","Valdivia","Corral","Lago Ranco","Puerto Varas","Puerto Montt"};
 int carga[]={0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
 //http://www.ctrl.cinvestav.mx/~yuw/pdf/MaTesCCJ.pdf
@@ -83,7 +80,7 @@ void draw() {
   for(int i =0; i<= 190 ; i=i+10){
     fill(R[i/10],G[i/10],B[i/10]);
     ellipse(290,i+10,10,10);
-    ellipse(130,Y[i/10],10,10);
+    ellipse(150,Y[i/10],10,10);
     text(ciudades[i/10], 301, i+15);}
     rect(150,Y[pos],30,10);
     //if(carga[pos]==1){
@@ -100,9 +97,10 @@ void keyPressed( ){
         carga[pos]=1;
       }else{carga[pos]=0;}
     }
-    if(pos>=0 && pos<ciudades.length && pos >= 0 &&(key=='w'||key=='W')){
+    if(pos>0 && pos<ciudades.length && pos >= 0 &&(key=='w'||key=='W')){
         pos--;
     }else if(pos>=0 && pos<ciudades.length && pos<=18 && (key=='s'||key=='S')){
         pos++;
     }
     }
+
