@@ -45,16 +45,48 @@ Transicion Transiciones[]={
   
   new Transicion(360,20,20)
 };
-Arco Arcos[]={
+int[] defaultp={0,0};
+Arco[] Arcos={
   new Arco(Lugares[0].getDown(),Transiciones[0].getUp()),
   new Arco(Lugares[1].getDown(),Transiciones[0].getUp()),
   new Arco(Transiciones[0].getDown(),Lugares[2].getUp()),
   new Arco(Lugares[2].getDown(),Transiciones[1].getUp()),
   new Arco(Transiciones[1].getDown(),Lugares[3].getUp()),
-  new Arco(Lugares[3].getDown(),Transiciones[2].getUp())
+  new Arco(Lugares[3].getDown(),Transiciones[2].getUp()),
+  new Arco(Transiciones[2].getDown(),Lugares[4].getUp()),
+  new Arco(Lugares[4].getDown(),Transiciones[3].getUp()),
+  new Arco(Transiciones[3].getDown(),Lugares[5].getUp()),
+  new Arco(Lugares[5].getDown(),Transiciones[4].getUp()),
+  new Arco(Transiciones[4].getDown(),Lugares[6].getUp()),
+  new Arco(Lugares[6].getDown(),Transiciones[5].getUp()),
+  new Arco(Transiciones[5].getDown(),Lugares[7].getUp()),
+  new Arco(Lugares[7].getDown(),Transiciones[6].getUp()),
+  new Arco(Transiciones[6].getDown(),Lugares[8].getUp()),
+  new Arco(Lugares[8].getDown(),Transiciones[7].getUp()),
+  new Arco(Transiciones[7].getDown(),Lugares[9].getUp()),
+  new Arco(Lugares[9].getDown(),Transiciones[8].getUp()),
+  new Arco(Transiciones[8].getDown(),Lugares[10].getDown()),
+  new Arco(Lugares[10].getUp(),Transiciones[9].getDown()),
+  new Arco(Transiciones[9].getUp(),Lugares[11].getDown()),
+  new Arco(Lugares[11].getUp(),Transiciones[10].getDown()),
+  new Arco(Transiciones[10].getUp(),Lugares[12].getDown()),
+  new Arco(Lugares[12].getUp(),Transiciones[11].getDown()),
+  new Arco(Transiciones[11].getUp(),Lugares[13].getDown()),
+  new Arco(Lugares[13].getUp(),Transiciones[12].getDown()),
+  new Arco(Transiciones[12].getUp(),Lugares[14].getDown()),
+  new Arco(Lugares[14].getUp(),Transiciones[13].getDown()),
+  new Arco(Transiciones[13].getUp(),Lugares[15].getDown()),
+  new Arco(Lugares[15].getUp(),Transiciones[14].getDown()),
+  new Arco(Transiciones[14].getUp(),Lugares[16].getDown())
+  
+  
 };
 void setup() {
-  size(500, 400);
+  size(500, 500);
+  /*for (int i=2;i<Arcos.length;i++){
+    Arcos[i].set(Transiciones[i-2].getDown(),Lugares[i].getUp());
+    Arcos[i+1].set(Lugares[i].getDown(),Transiciones[i-1].getUp());
+  }*/
 }
 
 void draw() {
@@ -127,6 +159,15 @@ class Arco{
   int[] end;
   float as;
   Arco(int[] beg,int[] end){
+    this.beg = beg;
+    this.end=end;
+    float dx = beg[0]-end[0];
+    float dy = beg[1]-end[1];
+    float h = sqrt(dx*dx + dy*dy);
+    as = acos(dx/h);
+    println("el angulo es "+as*180/PI);
+  }
+  void set(int[] beg,int[] end){
     this.beg = beg;
     this.end=end;
     float dx = beg[0]-end[0];
