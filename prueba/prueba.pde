@@ -60,7 +60,6 @@ void setup() {
   size(500,600);
   mapa = loadImage("mapachile.png");
   background(255);
-  //image(mapa,0,0);
   cargado = false;
    textSize(12);
   for(int i =0; i<= 190 ; i=i+10){
