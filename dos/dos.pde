@@ -84,7 +84,7 @@ Transicion[] Transiciones;
 Arco[] Arcos;
 void setup() {
   size(500, 500);
-  int cantidad = 10;
+  int cantidad = 2;
   Lugares = new Lugar[cantidad];
   Transiciones = new Transicion[cantidad];
   Arcos = new Arco[cantidad*4];
@@ -100,10 +100,16 @@ void setup() {
   for (int i=1;i<=cantidad/2;i++){
     Arcos[arcount++] = new Arco(Lugares[i-1].getDown(),Transiciones[i-1].getUp());
     Arcos[arcount++] = new Arco(Transiciones[i-1].getDown(),Lugares[i].getUp());
+    //regreso
+    Arcos[arcount++] = new Arco(Transiciones[i-1].getDown(),Lugares[i-1].getUp());
+    Arcos[arcount++] = new Arco(Lugares[i].getDown(),Transiciones[i-1].getUp());
   }
   for (int i=cantidad/2+1;i<cantidad;i++){
     Arcos[arcount++] = new Arco(Lugares[i-1].getUp(),Transiciones[i-1].getDown());
     Arcos[arcount++] = new Arco(Transiciones[i-1].getUp(),Lugares[i].getDown());
+    //regreso
+    Arcos[arcount++] = new Arco(Transiciones[i-1].getUp(),Lugares[i-1].getDown());
+    Arcos[arcount++] = new Arco(Lugares[i].getUp(),Transiciones[i-1].getDown());
   }
 }
 
