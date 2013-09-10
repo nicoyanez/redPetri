@@ -1,4 +1,4 @@
-Lugar Lugares[]={
+/*Lugar Lugares[]={
   new Lugar("p1",100,30),
   new Lugar("p2",140,30),
   new Lugar("p3",110,100),
@@ -77,16 +77,34 @@ Arco[] Arcos={
   new Arco(Lugares[14].getUp(),Transiciones[13].getDown()),
   new Arco(Transiciones[13].getUp(),Lugares[15].getDown()),
   new Arco(Lugares[15].getUp(),Transiciones[14].getDown()),
-  new Arco(Transiciones[14].getUp(),Lugares[16].getDown())
-  
-  
-};
+  new Arco(Transiciones[14].getUp(),Lugares[16].getDown())  
+};*/
+Lugar[] Lugares;
+Transicion[] Transiciones;
+Arco[] Arcos;
 void setup() {
   size(500, 500);
-  /*for (int i=2;i<Arcos.length;i++){
-    Arcos[i].set(Transiciones[i-2].getDown(),Lugares[i].getUp());
-    Arcos[i+1].set(Lugares[i].getDown(),Transiciones[i-1].getUp());
-  }*/
+  int cantidad = 10;
+  Lugares = new Lugar[cantidad];
+  Transiciones = new Transicion[cantidad];
+  Arcos = new Arco[cantidad*4];
+  int arcount=0;
+  for (int i=0;i<cantidad/2;i++){
+    Lugares[i]= new Lugar("p"+i,100,(i+1)*40);
+    Transiciones[i]= new Transicion(125,20+(i+1)*40,20);
+  }
+  for (int i=cantidad/2;i<cantidad;i++){
+    Lugares[i]= new Lugar("p"+i,200,(cantidad+1)*40-(i+1)*40);
+    Transiciones[i]= new Transicion(225,20+(cantidad+1)*40-(20+(i+1)*40),20);
+  }
+  for (int i=1;i<=cantidad/2;i++){
+    Arcos[arcount++] = new Arco(Lugares[i-1].getDown(),Transiciones[i-1].getUp());
+    Arcos[arcount++] = new Arco(Transiciones[i-1].getDown(),Lugares[i].getUp());
+  }
+  for (int i=cantidad/2+1;i<cantidad;i++){
+    Arcos[arcount++] = new Arco(Lugares[i-1].getUp(),Transiciones[i-1].getDown());
+    Arcos[arcount++] = new Arco(Transiciones[i-1].getUp(),Lugares[i].getDown());
+  }
 }
 
 void draw() {
@@ -97,7 +115,11 @@ void draw() {
     Transiciones[i].update();
   }
   for (int i=0;i<Arcos.length;i++){
-    Arcos[i].update();
+    if (Arcos[i]!=null){
+      Arcos[i].update();
+    }else{
+      break;
+    }
   }
 }
 
@@ -140,7 +162,7 @@ class Transicion{
   }
   void update(){
     stroke(0,0,0);
-    strokeWeight(3);
+    strokeWeight(6);
     //fill(255,0,0);
     line(x, y, x+ancho, y);
   }
